@@ -1,6 +1,6 @@
 import React from 'react'
 
-const DashboardLayout = ({ children }) => {
+const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="h-screen w-screen relative">
       <aside className="absolute top-0 left-0 h-full w-[200px] border-r border-black/10">
