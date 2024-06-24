@@ -26,7 +26,9 @@ interface EntryPageProps {
 const EntryPage = async ({ params }: EntryPageProps) => {
   const entry = await getEntry(params.id)
 
-  return <div>{entry && <Editor entry={entry} />}</div>
+  return (
+    <div className="h-full w-full">{entry && <Editor entry={entry} />}</div>
+  )
 }
 
 export default EntryPage
