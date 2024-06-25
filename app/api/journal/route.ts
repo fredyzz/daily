@@ -1,17 +1,28 @@
-import { getUserByAuthId } from "@/utils/auth"
-import { prismaDB } from "@/utils/db"
-import { NextResponse } from "next/server"
+import { analyze } from '@/utils/ai'
+import { getUserByAuthId } from '@/utils/auth'
+import { prismaDB } from '@/utils/db'
+import { NextResponse } from 'next/server'
+import { Prisma } from '@prisma/client';
 
 
 export const POST = async () => {
-    const user = await getUserByAuthId()
+  const user = await getUserByAuthId()
 
-    const entry = await prismaDB.journalEntry.create({
-        data: {
-            content: `${Date.now().toString()} - new journal entry`,
-            userId: user.id
-        }
-    })
+  const entry = await prismaDB.journalEntry.create({
+    data: {
+      content: `${Date.now().toString()} - this was a very happy day`,
+      userId: user.id,
+    },
+  })
 
-    return NextResponse.json({data: entry})
+  const analysis = await analyze(entry.content) 
+
+  await prismaDB.analysis.create({
+    data: {
+        entryId: entry.id,
+      ...analysis!
+    },
+  })
+
+  return NextResponse.json({ data: entry })
 }

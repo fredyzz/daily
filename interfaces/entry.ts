@@ -3,5 +3,17 @@ export interface EntryInterface {
     createdAt: Date
     id: string
     updatedAt: Date
-    userId: string
+    userId: string,
+    analysis?: {
+        id: string,
+        createdAt: Date,
+        updatedAt: Date,
+        entryId: string,
+        mood: string,
+        subject: string,
+        summary: string,
+        color: string,
+        negative: boolean,
+        sentimentScore: number
+      } | null;
 }
