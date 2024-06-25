@@ -1,11 +1,26 @@
 import { UserButton } from '@clerk/nextjs'
 import React from 'react'
+import Link from 'next/link'
+
+const LINKS = [
+  { href: '/', label: 'Home' },
+  { href: '/journal', label: 'Journal' },
+]
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="h-screen w-screen relative">
       <aside className="absolute top-0 left-0 h-full w-[200px] border-r border-black/10">
-        Mood
+        <div>Mood</div>
+        <nav>
+          <ul>
+            {LINKS.map((link) => (
+              <li key={link.label} className="px-2 py-6 text-xl">
+                <Link href={link.href}>{link.label}</Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </aside>
       <div className="ml-[200px] h-full">
         <header className="h-[60px] border-b border-black/10">
