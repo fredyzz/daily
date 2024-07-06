@@ -1,4 +1,5 @@
 const JOURNAL_URL = '/api/journal'
+const QUESTION_URL = '/api/question'
 
 const createURL = (path : string) => {
     return window.location.origin + path
@@ -32,4 +33,18 @@ export const createNewEntry = async () => {
         const {data} = await res.json()
         return data
     }
+}
+
+export const askQuestion = async(question) => {
+    const url = createURL(QUESTION_URL)
+    const res = await fetch(new Request(url, {
+        method: 'POST',
+        body: JSON.stringify({question})
+    }))
+
+    if(res.ok){
+        const {data} = await res.json()
+        return data
+    }
+
 }
