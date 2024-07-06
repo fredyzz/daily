@@ -5,6 +5,7 @@ import Link from 'next/link'
 const LINKS = [
   { href: '/', label: 'Home' },
   { href: '/journal', label: 'Journal' },
+  { href: '/history', label: 'History' },
 ]
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
